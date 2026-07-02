@@ -6,10 +6,7 @@
     font-family: monospace;
     font-variant: small-caps;
     }
-    h2 {
-    font-family: monospace;
-    }
-    h3 {
+    h2, h3 {
     font-family: monospace;
     }
     .btn {
@@ -22,10 +19,9 @@
     border-radius: 50px;
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
     display: inline-block;
+    text-decoration: none;
     background-color: #8e9aaf;
-    /* Added margin so buttons don't smash together when filtering */
     margin: 6px; 
     }
     .btn:hover {
@@ -38,7 +34,6 @@
     }
     body {
     padding-top: 10vh;
-    /* Added text alignment to center your elements nicely */
     text-align: center; 
     }
 </style>
@@ -52,10 +47,9 @@
     <h1>Oasis Games</h1>
     <h2><b>READ BEFORE GAMING!</b></h2>
     <h3>The difference between using a <b>PROXY</b> or using it <b>NORMALLY</b>:</h3>
-    <h3>&nbsp;&nbsp;&nbsp;&nbsp;<b>Proxy:</b><i> It looks like "about:blank" in your history, but the tab looks really suspicious.</i><br> <b>&nbsp;&nbsp;&nbsp;&nbsp;Regular/Normal:</b><i> The tab looks like it's Classlink ("My Apps"), but it reveals, very obviously, that you were gaming.</i></h3>
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;<b>Proxy:</b><i> It looks like "about:blank" in your history, but the tab looks really suspicious.</i><br> <b>&nbsp;&nbsp;&nbsp;&nbsp;Regular/Normal:</b><i> The tab looks like it's Classlink ("My Apps"), but it reveals (in your history), very obviously, that you were gaming.</i></h3>
     <hr>
     <h2>Our Games:</h2>
-    <!-- Added a container block to push the buttons down to a new row below the search input -->
     <div style="margin-bottom: 20px;">
         <input type="text" id="findGame" oninput="search()" placeholder="Search..." style="font-family:monospace; padding:8px; width: 250px; max-width: 80%;">
     </div>
@@ -64,8 +58,6 @@
     <a href="gdlite.html" class="btn">Geometry Dash Lite</a>
     <a href="cookieclicker.html" class="btn">Cookie Clicker</a>
     <a href="2048.html" class="btn">2048</a>
-    <a href="inp.html" class="btn">gamename</a>
-    <a href="inp.html" class="btn">gamename</a>
     <a href="inp.html" class="btn">gamename</a>
     <a href="inp.html" class="btn">gamename</a>
 </body>
@@ -81,7 +73,6 @@
     let activeUrl = '';
     const dialog = document.getElementById('proxyDialog');
     
-    // Fixed: Exclude your action dialog buttons from targeting the search filtering
     document.querySelectorAll('body > .btn').forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
@@ -117,7 +108,6 @@
     
     function search() {
         let query = document.getElementById('findGame').value.toLowerCase();
-        // Fixed: Target only the game links so modal control stays untouched
         document.querySelectorAll('body > .btn').forEach(b => {
             b.style.display = b.textContent.toLowerCase().includes(query) ? '' : 'none';
         });
