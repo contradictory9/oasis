@@ -16,7 +16,6 @@
     padding: 12.5px 25px;
     font-size: 16px;
     font-weight: 600;
-    background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #006580;
@@ -25,9 +24,9 @@
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
     display: inline-block;
-    text-decoration: none;
-    display: inline-block;
     background-color: #8e9aaf;
+    /* Added margin so buttons don't smash together when filtering */
+    margin: 6px; 
     }
     .btn:hover {
     transform: scale(1.08);
@@ -39,22 +38,28 @@
     }
     body {
     padding-top: 10vh;
+    /* Added text alignment to center your elements nicely */
+    text-align: center; 
     }
 </style>
-
 
 <head>
     <title>My Apps</title>
     <link rel="icon" type="image/jpeg" href="https://pbs.twimg.com/profile_images/1179529603624226818/oGF_v7IC.jpg">
 </head>
 
-
 <body>
     <h1>Oasis Games</h1>
     <h2><b>READ BEFORE GAMING!</b></h2>
     <h3>The difference between using a <b>PROXY</b> or using it <b>NORMALLY</b>:</h3>
-    <h3>&nbsp;&nbsp;&nbsp;&nbsp;<b>Proxy:</b><i> It looks like "about:blank" in your history, but the tab looks really suspicious.</i><hr> <b>&nbsp;&nbsp;&nbsp;&nbsp;Regular/Normal:</b><i> The tab looks like it's Classlink ("My Apps"), but it reveals, very obviously, that you were gaming.</i></h3>
-    <br>
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;<b>Proxy:</b><i> It looks like "about:blank" in your history, but the tab looks really suspicious.</i><br> <b>&nbsp;&nbsp;&nbsp;&nbsp;Regular/Normal:</b><i> The tab looks like it's Classlink ("My Apps"), but it reveals, very obviously, that you were gaming.</i></h3>
+    <hr>
+    <h2>Our Games:</h2>
+    <!-- Added a container block to push the buttons down to a new row below the search input -->
+    <div style="margin-bottom: 20px;">
+        <input type="text" id="findGame" oninput="search()" placeholder="Search..." style="font-family:monospace; padding:8px; width: 250px; max-width: 80%;">
+    </div>
+    
     <a href="eaglercraft.html" class="btn">Eaglercraft Tuffclient</a>
     <a href="gdlite.html" class="btn">Geometry Dash Lite</a>
     <a href="cookieclicker.html" class="btn">Cookie Clicker</a>
@@ -71,16 +76,20 @@
     <button id="btnNormal">Launch Normally</button>
     <button id="btnCancel" style="display:block; margin:15px auto 0 auto; color:red;">Nevermind</button>
 </dialog>
+
 <script>
     let activeUrl = '';
     const dialog = document.getElementById('proxyDialog');
-    document.querySelectorAll('.btn').forEach(link => {
+    
+    // Fixed: Exclude your action dialog buttons from targeting the search filtering
+    document.querySelectorAll('body > .btn').forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
             activeUrl = this.getAttribute('href');
             dialog.showModal();
         });
     });
+    
     document.getElementById('btnProxy').addEventListener('click', () => {
         dialog.close();
         const blankWindow = window.open('about:blank', '_blank');
@@ -96,13 +105,22 @@
             doc.body.appendChild(iframe);
         }
     });
+    
     document.getElementById('btnNormal').addEventListener('click', () => {
         dialog.close();
         window.open(activeUrl, '_blank');
     });
+    
     document.getElementById('btnCancel').addEventListener('click', () => {
         dialog.close();
     });
+    
+    function search() {
+        let query = document.getElementById('findGame').value.toLowerCase();
+        // Fixed: Target only the game links so modal control stays untouched
+        document.querySelectorAll('body > .btn').forEach(b => {
+            b.style.display = b.textContent.toLowerCase().includes(query) ? '' : 'none';
+        });
+    }
 </script>
-
 </html>
