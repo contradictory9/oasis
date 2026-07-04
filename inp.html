@@ -4,30 +4,46 @@
     <title>My Apps</title>
     <link rel="icon" type="image/x-icon" href="https://pbs.twimg.com/profile_images/1179529603624226818/oGF_v7IC.jpg">
     <style>
+        * {
+            color: #F4F4F5;
+            font-family: monospace;
+        }
         body {
             text-align: center;
-            background-color: #f0f0f0;
+            background-color: #09090B;
             margin-top: 100px;
         }
         .box {
-            background-color: white;
+            background-color: #18181B;
             width: 400px;
             margin: 0 auto;
             padding: 30px;
-            border: 2px solid #cccccc;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-variant: small-caps;
         }
         .button {
-            display: inline-block; /* Fixes padding and margin behavior */
-            background-color: blue;
-            color: white;
-            padding: 10px 20px;
+            display: inline-block;
+            background-color: #27272A;
+            padding: 12.5px 25px;
             text-decoration: none;
-            border-radius: 5px;
-            margin: 15px 5px 0 5px; /* Adds space above and between buttons */
+            border-radius: 50px;
+            margin: 15px 5px 0 5px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .button:hover {
-            background-color: darkblue;
+            transform: scale(1.08);
+            background-color: #3F3F46;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .button:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
